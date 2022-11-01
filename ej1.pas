@@ -19,11 +19,22 @@ begin
           end;
 
 end;
+function repite (m,n:byte;x:integer;matriz:mat):byte;
+var
+  i,j,contx:byte;
+begin
+  contx:=0;
+  for i:=1 to N do
+      for j:=1 to M do
+          if matriz[i,j]=x then
+             contx:=contx+1;
+  repite:=contx;
+end;
 procedure elementos (matriz:mat;m,n:byte;var contN,Contp,contnulo:byte);
 var
   i,j:byte;
 begin
-  for i:=i to N do
+  for i:=1 to N do
       for j:=1 to M do
            if matriz[i,j]=0 then
               contnulo:=contnulo+1
@@ -47,9 +58,9 @@ begin
 end;
 
 var
-  m,n,k,h:integer;
+  m,n,k,h,x:integer;
   matriz:mat;
-  contp,contn,contnulos:byte;
+  contp,contn,contnulos,contx:byte;
 
 begin
   contn:=0;contp:=0;contnulos:=0;
@@ -65,10 +76,13 @@ begin
   repeat
     writeln ('Ingrese H');readln (H);
   until (h>0)and(h<=n);
+  writeln ('Ingrese X');readln(X);
   leermat (m,n,matriz);
+  repite(m,n,x,matriz);
+    writeln ('Se repite ',repite(m,n,x,matriz));
   elementos (matriz,m,n,contn,contp,contnulos);
   intercambio(k,h,m,matriz);
-  writeln ('Positivos ',contp,' Negativos ',contp,' Nulos ',contnulos);
+  writeln ('Positivos ',contp,' Negativos ',contn,' Nulos ',contnulos);
   readln;
 
 end.
